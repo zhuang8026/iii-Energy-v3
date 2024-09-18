@@ -44,7 +44,7 @@ const Home = () => {
                     {t('home.month_electricity')}
                     <div className={cx('target')}>
                         <DoughnutChart
-                            value={340.0} // 用電數度
+                            value={350.0} // 用電數度
                             total={340.0} // 總用電數度
                             compareValue={-2.0} // 比較數度
                         />
@@ -53,12 +53,14 @@ const Home = () => {
                         <ErrorOutlineTwoToneIcon />
                     </button>
                 </div>
-                {/* 昨日用電量 */}
+
+                {/* 本月用電量 */}
                 <div className={cx('target-box')}>
-                    {t('home.yesterday_electricity')}
+                    {t('home.all_month_electricity')}
                     <div className={cx('target')}>
                         <DoughnutChart
-                            value={5.0} // 用電數度
+                            type="month"
+                            value={441.0} // 用電數度
                             total={340.0} // 總用電數度
                         />
                     </div>
@@ -66,6 +68,7 @@ const Home = () => {
                         <ErrorOutlineTwoToneIcon />
                     </button>
                 </div>
+
                 {/* 前天用電量 */}
                 <div className={cx('target-box')}>
                     {t('home.before_yesterday_electricity')}
@@ -79,12 +82,13 @@ const Home = () => {
                         <ErrorOutlineTwoToneIcon />
                     </button>
                 </div>
-                {/* 本月用電量 */}
+
+                {/* 昨日用電量 */}
                 <div className={cx('target-box')}>
-                    {t('home.all_month_electricity')}
+                    {t('home.yesterday_electricity')}
                     <div className={cx('target')}>
                         <DoughnutChart
-                            value={100.0} // 用電數度
+                            value={5.0} // 用電數度
                             total={340.0} // 總用電數度
                         />
                     </div>
@@ -106,7 +110,7 @@ const Home = () => {
                             </div>
                         </div>
                         <button type="button">
-                            <BorderColorTwoToneIcon />
+                            <ErrorOutlineTwoToneIcon />
                         </button>
                     </div>
                 ))}

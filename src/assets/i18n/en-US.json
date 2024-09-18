@@ -26,7 +26,8 @@
         "all_month_electricity": "Electricity consumption this month",
         "household_electricity_consumption_direction": "Household electricity consumption direction this month",
         "comparison_more": "{{value}} degrees more than the same month last year",
-        "comparison_last": "{{value}} degrees less than the same month last year"
+        "comparison_last": "{{value}} degrees less than the same month last year",
+        "exceeded_target_by_degrees": "Exceeded target setting by {{value}} degrees"
     },
     "machine": {
         "television": "Television"

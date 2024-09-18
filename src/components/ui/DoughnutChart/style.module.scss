@@ -37,10 +37,22 @@
 
     .chartDesc {
         position: absolute;
-        top: calc(50% - 34px);
-        left: calc(50% - 58px);
+        // top: calc(50% - 34px);
+        // left: calc(50% - 58px);
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
         z-index: 1;
         font-size: $fs-14;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        .chartNumber {
+            width: 100%;
+            text-align: center;
+        }
         span {
             font-size: $fs-56;
             font-weight: bold;

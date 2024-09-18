@@ -26,7 +26,8 @@
         "all_month_electricity": "本月用電量",
         "household_electricity_consumption_direction": "本月家庭用電流向",
         "comparison_more": "較去年同月多 {{value}} 度",
-        "comparison_last": "較去年同月少 {{value}} 度"
+        "comparison_last": "較去年同月少 {{value}} 度",
+        "exceeded_target_by_degrees": "超出目標設定 {{value}} 度"
     },
     "machine": {
         "television": "電視"

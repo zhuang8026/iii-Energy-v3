@@ -12,40 +12,53 @@ import classes from './style.module.scss';
 import classNames from 'classnames/bind';
 const cx = classNames.bind(classes);
 
-const DoughnutChart = ({ value = 100.0, total = 200.0, compareValue = 0 }) => {
+const DoughnutChart = ({ type = '', value = 100.0, total = 200.0, compareValue = 0 }) => {
     const { t, i18n } = useTranslation();
     const chartDOM = useRef();
 
     const initChart = () => {
+        const Health = '#20A2A0'; // 未超標顏色
+        const Warning = '#ff6700'; // 超標顏色
+        const Danger = '#ff0000'; // 超標顏色
         let chartLine = echarts.init(chartDOM.current);
         chartLine.clear();
 
-        const empty = () => {
+        // 未使用用電量
+        const emptyValue = () => {
             const targetNumber = total * (120 / 100); // 目標的120%
             if (value >= targetNumber) return 0;
             return targetNumber - value; // 目標的120% - 累積用電量
+        };
+
+        // 未使用用電量
+        const emptyDangerValue = () => {
+            const dangerVal = value - total;
+            if (dangerVal < 0) return 0;
+            return total - dangerVal; // 目標的120% - 累積用電量
         };
 
         const option = {
             animation: false, // 關閉整體動畫
             selectedMode: false,
             series: [
+                // 外圈 - 未過100%的部分
                 {
                     type: 'pie',
+                    radius: ['98%', '78%'], // 外圈的半徑範圍
                     data: [
                         // ...seriesData,
                         {
                             value: value,
-                            // name: "",
+                            name: 'usedValue',
                             itemStyle: {
-                                color: '#20A2A0', // 有參數則為 20A2A0，沒參數則為 #EBEEFA
+                                color: value > total ? Warning : Health, // 有參數則為 20A2A0，沒參數則為 #EBEEFA
                                 borderRadius: 20,
-                                borderColor: '#20A2A0',
+                                // borderColor: '#20A2A0',
                                 borderWidth: 0
                             }
                         },
                         {
-                            value: empty(),
+                            value: emptyValue(), // 未使用用電量
                             name: 'empty',
                             itemStyle: {
                                 color: '#EBEEFA',
@@ -56,7 +69,53 @@ const DoughnutChart = ({ value = 100.0, total = 200.0, compareValue = 0 }) => {
                     label: {
                         show: false
                     },
-                    radius: ['98%', '75%'],
+                    itemStyle: {
+                        borderRadius: 20,
+                        borderWidth: 0
+                        // borderColor: '#20A2A0',
+                        // borderWidth: 1
+                    },
+                    emphasis: {
+                        scale: false,
+                        itemStyle: {
+                            color: 'inherit', // 繼承原色，防止變色
+                            shadowBlur: 0, // 去掉陰影模糊
+                            shadowOffsetX: 0, // 去掉陰影 X 偏移
+                            shadowOffsetY: 0, // 去掉陰影 Y 偏移
+                            borderColor: 'inherit', // 防止邊框顏色變化
+                            borderWidth: 0 // 去掉邊框寬度
+                        }
+                    }
+                },
+
+                // 內圈 - 超過100%的部分
+                value - total > 0 && {
+                    type: 'pie',
+                    radius: ['60%', '74%'], // 內圈的半徑範圍
+                    data: [
+                        // ...seriesData,
+                        {
+                            value: value - total,
+                            name: 'usedValue',
+                            itemStyle: {
+                                color: Danger, // 有參數則為 20A2A0，沒參數則為 #EBEEFA
+                                borderRadius: 20,
+                                // borderColor: '#20A2A0',
+                                borderWidth: 0
+                            }
+                        },
+                        {
+                            value: emptyDangerValue(), // 未使用用電量
+                            name: 'empty',
+                            itemStyle: {
+                                color: '#EBEEFA',
+                                borderWidth: 0
+                            }
+                        }
+                    ],
+                    label: {
+                        show: false
+                    },
                     itemStyle: {
                         borderRadius: 20,
                         borderWidth: 0
@@ -105,6 +164,9 @@ const DoughnutChart = ({ value = 100.0, total = 200.0, compareValue = 0 }) => {
                             {t('home.comparison_last', { value: Math.abs(compareValue) })}
                         </div>
                     )
+                )}
+                {type === 'month' && value - total > 0 && (
+                    <div className={cx('result')}>{t('home.exceeded_target_by_degrees', { value: value - total })}</div>
                 )}
             </div>
         </div>
