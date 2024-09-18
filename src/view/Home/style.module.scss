@@ -1,0 +1,53 @@
+@import '@/assets/scss/_variables';
+
+// svg
+@import '@/assets/scss/_svg-icon';
+
+.home {
+    width: calc(100%);
+    border-radius: $fs-12;
+    margin: 24px auto;
+    h3 {
+        font-weight: bold;
+        margin-top: 24px;
+    }
+
+    .block {
+        padding: 10px;
+        display: grid;
+        grid-gap: $fs-16;
+        gap: $fs-16;
+        grid-template-columns: repeat(4, 1fr);
+        .target-box {
+            position: relative;
+            background: #fff;
+            border-radius: $fs-12;
+            padding: 18px;
+            .target {
+                // width: 100%;
+                height: auto;
+                margin: 10px 0;
+                display: flex;
+                justify-content: space-between;
+                span {
+                    font-size: $fs-48;
+                    line-height: $fs-48;
+                    font-weight: 900;
+                }
+            }
+            span {
+                font-size: $fs-14;
+            }
+            button {
+                position: absolute;
+                top: 18px;
+                right: 18px;
+                padding: 5px;
+                border-radius: 5px;
+                cursor: pointer;
+
+                @include svg_color();
+            }
+        }
+    }
+}

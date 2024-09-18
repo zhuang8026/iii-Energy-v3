@@ -1,0 +1,34 @@
+{
+    "dashboard_header": "什麼是儀表板？完整概述",
+    "dashboard_desc": "在當今時代，了解數據是為任何企業做出最佳決策的關鍵。然而，對於最精通數據的人來說，隨時可用的資訊量可能是巨大的。那麼做出//數據驅動決策//的關鍵是什麼？尋找最重要的數據並以易於理解的方式對其進行格式化。這可能會發生變化，具體取決於誰將查看數據。如果您是行業專家，您可能會發現複雜的數據更容易理解。如果您要向公司中不太熟悉的利害關係人提供數據，則可能需要在與其他人共享之前對其進行簡化讓技術和非技術受眾易於理解數據的最簡單方法之一是建立儀表板，在一個位置輕鬆顯示所有//數據視覺化//。",
+    "dashboard_definition": "由於儀表板使用//表格//、圖形和//圖表//等視覺化效果，因此不太熟悉數據的其他人可以快速輕鬆地理解它講述的故事或它揭示的見解。 ",
+    "title": {
+        "default": "居家能源管理服務平台"
+    },
+    "menu": {
+        "menu": "菜單",
+        "dashboard": "儀表板",
+        "overall": "總覽訊息",
+        "sensor": "感測器日誌",
+        "equipment_management": "設備管理",
+        "equipment_list": "設備列表",
+        "event_management": "事件管理",
+        "user_logout": "登出"
+    },
+    "home": {
+        "power_usage_tracking": "用電追蹤",
+        "set_goals": "設定目標",
+        "public_electricity_desc": "不含社區公共用電",
+        "electricity_consumption_accumulation": "用電累積",
+        "month_electricity": "本月累積",
+        "yesterday_electricity": "昨日用電量",
+        "before_yesterday_electricity": "前天用電量",
+        "all_month_electricity": "本月用電量",
+        "household_electricity_consumption_direction": "本月家庭用電流向",
+        "comparison_more": "較去年同月多 {{value}} 度",
+        "comparison_last": "較去年同月少 {{value}} 度"
+    },
+    "machine": {
+        "television": "電視"
+    }
+}
