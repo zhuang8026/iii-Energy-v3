@@ -1,8 +1,13 @@
 import React, { useState, Suspense, useEffect, useContext, useRef } from 'react';
 import { BrowserRouter, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 
-// mui
-import DownloadingOutlinedIcon from '@mui/icons-material/DownloadingOutlined';
+// mui icon
+import ElectricalServicesTwoToneIcon from '@mui/icons-material/ElectricalServicesTwoTone';
+import LeaderboardTwoToneIcon from '@mui/icons-material/LeaderboardTwoTone';
+import BorderColorTwoToneIcon from '@mui/icons-material/BorderColorTwoTone';
+import VpnKeyTwoToneIcon from '@mui/icons-material/VpnKeyTwoTone';
+
+// 翻譯
 import { useTranslation } from 'react-i18next'; // 翻譯
 
 // config
@@ -33,32 +38,32 @@ function App() {
     const [auth, setAuth] = useState(true);
     const [menuList, setMenuList] = useState([
         {
-            main: 'menu.dashboard',
+            main: 'menu.overall',
             children: [
                 {
-                    name: 'menu.overall',
+                    name: 'menu.daily_usage_tracking',
                     path: '/main',
-                    icon: <DownloadingOutlinedIcon />
+                    icon: <ElectricalServicesTwoToneIcon />
                 },
                 {
-                    name: 'menu.sensor',
-                    path: '/user/account',
-                    icon: <DownloadingOutlinedIcon />
+                    name: 'menu.energy_report',
+                    path: '/main/energy_report',
+                    icon: <LeaderboardTwoToneIcon />
                 }
             ]
         },
         {
-            main: 'menu.equipment_management',
+            main: 'menu.member_management',
             children: [
                 {
-                    name: 'menu.equipment_list',
-                    path: '/pageA',
-                    icon: <DownloadingOutlinedIcon />
+                    name: 'menu.data_modification',
+                    path: '/member/data_modification',
+                    icon: <BorderColorTwoToneIcon />
                 },
                 {
-                    name: 'menu.event_management',
-                    path: '/pageB',
-                    icon: <DownloadingOutlinedIcon />
+                    name: 'menu.password_change',
+                    path: '/member/password_change',
+                    icon: <VpnKeyTwoToneIcon />
                 }
             ]
         }

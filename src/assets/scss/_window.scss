@@ -1,11 +1,11 @@
 // @import '@/assets/scss/_variables.scss';
 
 ::-moz-selection {
-    background: $bg_color_top;
+    background: $na2;
     color: white;
 }
 ::selection {
-    background: $bg_color_bottom;
+    background: $na;
     color: white;
 }
 ::-webkit-scrollbar {
@@ -16,9 +16,9 @@
 
 ::-webkit-scrollbar-thumb {
     border-radius: 5px;
-    background-color: $bg_color_top;
+    background-color: $na2;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background-color: $bg_color_bottom;
+    background-color: $na;
 }

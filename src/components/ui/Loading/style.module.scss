@@ -1,3 +1,10 @@
+// svg
+@import '@/assets/scss/_svg-icon';
+
+.loading {
+    @include svg_color();
+}
+
 .loader {
     margin: 0 0 2em;
     height: 100px;

@@ -48,10 +48,20 @@ const DoughnutChart = ({ type = '', value = 100.0, total = 200.0, compareValue =
                     data: [
                         // ...seriesData,
                         {
-                            value: value,
+                            value: value >= total ? total : value,
                             name: 'usedValue',
                             itemStyle: {
-                                color: value > total ? Warning : Health, // 有參數則為 20A2A0，沒參數則為 #EBEEFA
+                                color: Health, // 有參數則為 20A2A0，沒參數則為 #EBEEFA
+                                borderRadius: 20,
+                                // borderColor: '#20A2A0',
+                                borderWidth: 0
+                            }
+                        },
+                        {
+                            value: value >= total * 1.2 ? total * 0.2 : value - total,
+                            name: 'warningValue',
+                            itemStyle: {
+                                color: Warning, // 有參數則為 20A2A0，沒參數則為 #EBEEFA
                                 borderRadius: 20,
                                 // borderColor: '#20A2A0',
                                 borderWidth: 0
@@ -88,14 +98,13 @@ const DoughnutChart = ({ type = '', value = 100.0, total = 200.0, compareValue =
                     }
                 },
 
-                // 內圈 - 超過100%的部分
-                value - total > 0 && {
+                // [danger] 內圈 - 超過100%的部分
+                value - total * (120 / 100) > 0 && {
                     type: 'pie',
                     radius: ['60%', '74%'], // 內圈的半徑範圍
                     data: [
-                        // ...seriesData,
                         {
-                            value: value - total,
+                            value: value - total * (120 / 100),
                             name: 'usedValue',
                             itemStyle: {
                                 color: Danger, // 有參數則為 20A2A0，沒參數則為 #EBEEFA

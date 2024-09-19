@@ -7,12 +7,12 @@
     },
     "menu": {
         "menu": "Menu",
-        "dashboard": "Dashboard",
-        "overall": "Overall information",
-        "sensor": "Sensor Time Log",
-        "equipment_management": "Equipment Management",
-        "equipment_list": "Equipment List",
-        "event_management": "Event Management",
+        "overall": "Electricity usage overview",
+        "daily_usage_tracking": "Daily Electricity Consumption Monitoring",
+        "energy_report": "Household Energy Report",
+        "member_management": "Membership Management",
+        "data_modification": "Data Update",
+        "password_change": "Password Modification",
         "user_logout": "Logout"
     },
     "home": {

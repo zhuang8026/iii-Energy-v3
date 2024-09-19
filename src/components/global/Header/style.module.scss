@@ -35,6 +35,8 @@
     .title {
         font-weight: bold;
         p {
+            display: flex;
+            align-items: self-end;
             font-size: $fs-14;
             font-weight: normal;
             color: $text_opacity;

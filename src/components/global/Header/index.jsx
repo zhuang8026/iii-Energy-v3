@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
+import HomeTwoToneIcon from '@mui/icons-material/HomeTwoTone';
 import CircleNotificationsTwoToneIcon from '@mui/icons-material/CircleNotificationsTwoTone';
 import AccountCircleTwoToneIcon from '@mui/icons-material/AccountCircleTwoTone';
 
@@ -90,7 +91,7 @@ const Header = () => {
         <div className={cx('header', isScrolled && 'scrolled')}>
             <div className={cx('title')}>
                 <p>
-                    {t(head.main)} / {t(head.child)}
+                    <HomeTwoToneIcon /> / {t(head.main)} / {t(head.child)}
                 </p>
                 {t(head.child)}
             </div>

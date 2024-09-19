@@ -1,10 +1,6 @@
 import React, { useState, Suspense, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 
-// mui
-import DownloadingOutlinedIcon from '@mui/icons-material/DownloadingOutlined';
-// import ExitToAppIcon from '@mui/icons-material/ExitToApp';
-
 import { useTranslation } from 'react-i18next';
 
 // utils
@@ -65,7 +61,7 @@ const Menu = ({ menuList }) => {
                                         onClick={() => clickMenu(index, item.path)}
                                         key={idx}
                                     >
-                                        <DownloadingOutlinedIcon />
+                                        {item.icon}
                                         <span>{t(item.name)}</span>
                                     </div>
                                 ))}

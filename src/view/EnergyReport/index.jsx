@@ -8,6 +8,12 @@ import { useTranslation } from 'react-i18next';
 import BorderColorTwoToneIcon from '@mui/icons-material/BorderColorTwoTone';
 import ErrorOutlineTwoToneIcon from '@mui/icons-material/ErrorOutlineTwoTone';
 
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+
+// icon
 import IconTV from '@/assets/images/icon-tv.svg';
 // import IconElectricPot from '@/assets/images/icon-electric_pot.svg';
 
@@ -19,28 +25,44 @@ import classes from './style.module.scss';
 import classNames from 'classnames/bind';
 const cx = classNames.bind(classes);
 
-const Home = () => {
+const EnergyReport = () => {
     const { t, i18n } = useTranslation();
     return (
-        <div className={cx('home')}>
-            <h3>{t('home.power_usage_tracking')}</h3>
+        <div className={cx('report')}>
+            <div className={cx('year_control')}>
+                <h3>月報</h3>
+
+                <FormControl sx={{ m: 1, minWidth: 120 }}>
+                    <InputLabel id="demo-simple-select-helper-label">Year</InputLabel>
+                    <Select
+                        labelId="demo-simple-select-helper-label"
+                        id="demo-simple-select-helper"
+                        value="2024"
+                        label="Year"
+                        // onChange={handleChange}
+                    >
+                        <MenuItem value="">None</MenuItem>
+                        <MenuItem value={2022}>2022</MenuItem>
+                        <MenuItem value={2023}>2023</MenuItem>
+                        <MenuItem value={2024}>2024</MenuItem>
+                    </Select>
+                    {/* <FormHelperText>With label + helper text</FormHelperText> */}
+                </FormControl>
+            </div>
             <div className={cx('block')}>
-                <div className={cx('target-box')}>
-                    {t('home.set_goals')}
-                    <div className={cx('target')}>
-                        <div className={cx('target-item-number')}>
-                            <span>9,999</span> KWH
-                            {/* 1KWH = 1000W = 1度電 */}
+                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((item, index) => (
+                    <div className={cx('report-box')} key={index}>
+                        2024年
+                        <div className={cx('report')}>
+                            <div className={cx('report-item-number')}>
+                                <span>{item}</span> 月
+                            </div>
                         </div>
                     </div>
-                    <span>* {t('home.public_electricity_desc')} *</span>
-                    <button type="button">
-                        <BorderColorTwoToneIcon />
-                    </button>
-                </div>
+                ))}
             </div>
 
-            <h3>{t('home.electricity_consumption_accumulation')}</h3>
+            <h3>週報</h3>
             <div className={cx('block')}>
                 {/* 本月累積 */}
                 <div className={cx('target-box')}>
@@ -100,33 +122,8 @@ const Home = () => {
                     </button>
                 </div>
             </div>
-
-            <h3>{t('home.household_electricity_consumption_direction')}</h3>
-            <div className={cx('block')}>
-                {[999, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14].map((item, index) => (
-                    <div className={cx('target-box', 'machine_card')} key={index}>
-                        <div className={cx('icon')}>
-                            <img src={IconTV} alt="television" />
-                        </div>
-                        <div className={cx('inner')}>
-                            <button type="button">
-                                <ErrorOutlineTwoToneIcon />
-                            </button>
-                            <>
-                                {t('machine.television')}
-                                <div className={cx('target')}>
-                                    <div className={cx('target-item-number')}>
-                                        <span>{item}</span>KWH
-                                        {/* 1KWH = 1000W = 1度電 */}
-                                    </div>
-                                </div>
-                            </>
-                        </div>
-                    </div>
-                ))}
-            </div>
         </div>
     );
 };
 
-export default Home;
+export default EnergyReport;
