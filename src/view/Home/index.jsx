@@ -29,7 +29,7 @@ const Home = () => {
                     {t('home.set_goals')}
                     <div className={cx('target')}>
                         <div className={cx('target-item-number')}>
-                            <span>9,999</span> KWH
+                            <span>9,999</span> {t("kwh")}
                             {/* 1KWH = 1000W = 1度電 */}
                         </div>
                     </div>
@@ -116,7 +116,7 @@ const Home = () => {
                                 {t('machine.television')}
                                 <div className={cx('target')}>
                                     <div className={cx('target-item-number')}>
-                                        <span>{item}</span>KWH
+                                        <span>{item}</span>{t("kwh")}
                                         {/* 1KWH = 1000W = 1度電 */}
                                     </div>
                                 </div>

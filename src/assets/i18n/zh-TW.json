@@ -1,4 +1,5 @@
 {
+    "kwh": "度",
     "title": {
         "default": "居家能源管理服務平台"
     },
@@ -28,5 +29,9 @@
     },
     "machine": {
         "television": "電視"
+    },
+    "energyReport": {
+        "year_select": "年份",
+        "year": "年"
     }
 }

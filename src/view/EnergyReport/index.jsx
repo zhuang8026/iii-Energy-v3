@@ -5,20 +5,15 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 // mui
-import BorderColorTwoToneIcon from '@mui/icons-material/BorderColorTwoTone';
-import ErrorOutlineTwoToneIcon from '@mui/icons-material/ErrorOutlineTwoTone';
-
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
-// icon
-import IconTV from '@/assets/images/icon-tv.svg';
-// import IconElectricPot from '@/assets/images/icon-electric_pot.svg';
-
 // components
-import DoughnutChart from '@/components/ui/DoughnutChart';
+import WeekPicker from '@/components/ui/WeekPicker';
+import PieChart from '@/components/ui/PieChart';
+import BorderLinearProgress from '@/components/ui/BorderLinearProgress';
 
 // css
 import classes from './style.module.scss';
@@ -27,18 +22,40 @@ const cx = classNames.bind(classes);
 
 const EnergyReport = () => {
     const { t, i18n } = useTranslation();
+
     return (
         <div className={cx('report')}>
             <div className={cx('year_control')}>
                 <h3>月報</h3>
 
                 <FormControl sx={{ m: 1, minWidth: 120 }}>
-                    <InputLabel id="demo-simple-select-helper-label">Year</InputLabel>
+                    <InputLabel
+                        id="year-select"
+                        sx={{
+                            '&.Mui-focused': {
+                                color: '#20A2A0' // 当输入框聚焦时的颜色
+                            }
+                        }}
+                    >
+                        {t('energyReport.year_select')}
+                    </InputLabel>
                     <Select
-                        labelId="demo-simple-select-helper-label"
-                        id="demo-simple-select-helper"
-                        value="2024"
+                        labelId="year-select"
+                        id="year-select-helper"
+                        value={2024}
                         label="Year"
+                        sx={{
+                            width: 150, // 设置 Select 宽度
+                            '& .MuiOutlinedInput-notchedOutline': {
+                                borderRadius: '30px'
+                            },
+                            '&:hover .MuiOutlinedInput-notchedOutline': {
+                                borderColor: '#20A2A0' // hover 时的边框颜色
+                            },
+                            '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                borderColor: '#20A2A0' // 焦点状态下的边框颜色
+                            }
+                        }}
                         // onChange={handleChange}
                     >
                         <MenuItem value="">None</MenuItem>
@@ -52,7 +69,7 @@ const EnergyReport = () => {
             <div className={cx('block')}>
                 {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((item, index) => (
                     <div className={cx('report-box')} key={index}>
-                        2024年
+                        2024 {t('energyReport.year')}
                         <div className={cx('report')}>
                             <div className={cx('report-item-number')}>
                                 <span>{item}</span> 月
@@ -63,63 +80,26 @@ const EnergyReport = () => {
             </div>
 
             <h3>週報</h3>
-            <div className={cx('block')}>
-                {/* 本月累積 */}
-                <div className={cx('target-box')}>
-                    {t('home.month_electricity')}
-                    <div className={cx('target')}>
-                        <DoughnutChart
+            <div className={cx('block', 'block_repeat_2')}>
+                <div className={cx('weekend_datePicker')}>
+                    <WeekPicker />
+                </div>
+
+                <div className={cx('weekend_chart')}>
+                    <div className={cx('user_comparison')}>
+                        <h4>同儕用電比較</h4>
+                        <BorderLinearProgress name={'本戶'} value={20} />
+                        <BorderLinearProgress name={'近似用戶'} value={90} color="#ffcb01" />
+                        <BorderLinearProgress name={'低耗能用戶'} value={70} color="#ff6700" />
+                    </div>
+                    <div className={cx('power_comparison')}>
+                        <h4>電器用電佔比</h4>
+                        <PieChart
                             value={350.0} // 用電數度
                             total={340.0} // 總用電數度
                             compareValue={-2.0} // 比較數度
                         />
                     </div>
-                    <button type="button">
-                        <ErrorOutlineTwoToneIcon />
-                    </button>
-                </div>
-
-                {/* 本月用電量 */}
-                <div className={cx('target-box')}>
-                    {t('home.all_month_electricity')}
-                    <div className={cx('target')}>
-                        <DoughnutChart
-                            type="month"
-                            value={419.0} // 用電數度
-                            total={340.0} // 總用電數度
-                        />
-                    </div>
-                    <button type="button">
-                        <ErrorOutlineTwoToneIcon />
-                    </button>
-                </div>
-
-                {/* 前天用電量 */}
-                <div className={cx('target-box')}>
-                    {t('home.before_yesterday_electricity')}
-                    <div className={cx('target')}>
-                        <DoughnutChart
-                            value={50.0} // 用電數度
-                            total={340.0} // 總用電數度
-                        />
-                    </div>
-                    <button type="button">
-                        <ErrorOutlineTwoToneIcon />
-                    </button>
-                </div>
-
-                {/* 昨日用電量 */}
-                <div className={cx('target-box')}>
-                    {t('home.yesterday_electricity')}
-                    <div className={cx('target')}>
-                        <DoughnutChart
-                            value={5.0} // 用電數度
-                            total={340.0} // 總用電數度
-                        />
-                    </div>
-                    <button type="button">
-                        <ErrorOutlineTwoToneIcon />
-                    </button>
                 </div>
             </div>
         </div>

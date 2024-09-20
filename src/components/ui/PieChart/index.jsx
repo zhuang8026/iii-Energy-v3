@@ -7,12 +7,15 @@ import { useTranslation } from 'react-i18next';
 // echarts
 import * as echarts from 'echarts';
 
+// components
+import BorderLinearProgress from '@/components/ui/BorderLinearProgress';
+
 // css
 import classes from './style.module.scss';
 import classNames from 'classnames/bind';
 const cx = classNames.bind(classes);
 
-const DoughnutChart = ({ type = '', value = 100.0, total = 200.0, compareValue = 0 }) => {
+const PieChart = ({ type = '', value = 100.0, total = 200.0, compareValue = 0 }) => {
     const { t, i18n } = useTranslation();
     const chartDOM = useRef();
 
@@ -48,7 +51,7 @@ const DoughnutChart = ({ type = '', value = 100.0, total = 200.0, compareValue =
                     data: [
                         // ...seriesData,
                         {
-                            value: value >= total ? total : value,
+                            value: 10,
                             name: 'usedValue',
                             itemStyle: {
                                 color: Health, // 有參數則為 20A2A0，沒參數則為 #EBEEFA
@@ -58,7 +61,7 @@ const DoughnutChart = ({ type = '', value = 100.0, total = 200.0, compareValue =
                             }
                         },
                         {
-                            value: value >= total * 1.2 ? total * 0.2 : value - total,
+                            value: 20,
                             name: 'warningValue',
                             itemStyle: {
                                 color: Warning, // 有參數則為 20A2A0，沒參數則為 #EBEEFA
@@ -69,52 +72,6 @@ const DoughnutChart = ({ type = '', value = 100.0, total = 200.0, compareValue =
                         },
                         {
                             value: emptyValue(), // 未使用用電量
-                            name: 'empty',
-                            itemStyle: {
-                                color: '#EBEEFA',
-                                borderWidth: 0
-                            }
-                        }
-                    ],
-                    label: {
-                        show: false
-                    },
-                    itemStyle: {
-                        borderRadius: 20,
-                        borderWidth: 0
-                        // borderColor: '#20A2A0',
-                        // borderWidth: 1
-                    },
-                    emphasis: {
-                        scale: false,
-                        itemStyle: {
-                            color: 'inherit', // 繼承原色，防止變色
-                            shadowBlur: 0, // 去掉陰影模糊
-                            shadowOffsetX: 0, // 去掉陰影 X 偏移
-                            shadowOffsetY: 0, // 去掉陰影 Y 偏移
-                            borderColor: 'inherit', // 防止邊框顏色變化
-                            borderWidth: 0 // 去掉邊框寬度
-                        }
-                    }
-                },
-
-                // [danger] 內圈 - 超過100%的部分
-                value - total * (120 / 100) > 0 && {
-                    type: 'pie',
-                    radius: ['60%', '74%'], // 內圈的半徑範圍
-                    data: [
-                        {
-                            value: value - total * (120 / 100),
-                            name: 'usedValue',
-                            itemStyle: {
-                                color: Danger, // 有參數則為 20A2A0，沒參數則為 #EBEEFA
-                                borderRadius: 20,
-                                // borderColor: '#20A2A0',
-                                borderWidth: 0
-                            }
-                        },
-                        {
-                            value: emptyDangerValue(), // 未使用用電量
                             name: 'empty',
                             itemStyle: {
                                 color: '#EBEEFA',
@@ -154,32 +111,26 @@ const DoughnutChart = ({ type = '', value = 100.0, total = 200.0, compareValue =
     }, []);
 
     return (
-        <div className={cx('chartBox')}>
-            {/* 圓餅圖 */}
-            <div id={cx('doughnutChart')} ref={chartDOM} />
-            {/* 100%關鍵點 */}
-            <div className={cx('chartDot')} />
-            {/* 目標度數 */}
-            <div className={cx('chartDesc')}>
-                <div className={cx('chartNumber')}>
-                    <span>{value}</span>
-                    {t("kwh")}
+        <div className={cx('pie')}>
+            <div className={cx('pieBox')}>
+                {/* 圓餅圖 */}
+                <div id={cx('pieChart')} ref={chartDOM} />
+                {/* 目標度數 */}
+                <div className={cx('chartDesc')}>
+                    <div className={cx('result')}>上週總用電量度數</div>
+                    <div className={cx('chartNumber')}>
+                        <span>{value}</span>
+                        {t("kwh")}
+                    </div>
                 </div>
-                {compareValue > 0 ? (
-                    <div className={cx('result')}>{t('home.comparison_more', { value: compareValue })}</div>
-                ) : (
-                    compareValue !== 0 && (
-                        <div className={cx('result')}>
-                            {t('home.comparison_last', { value: Math.abs(compareValue) })}
-                        </div>
-                    )
-                )}
-                {type === 'month' && value - total > 0 && (
-                    <div className={cx('result')}>{t('home.exceeded_target_by_degrees', { value: value - total })}</div>
-                )}
+            </div>
+            {/* 使用電器度數 */}
+            <div className={cx('progress')}>
+                <BorderLinearProgress name={'電視'} value={20} />
+                <BorderLinearProgress name={'冰箱'} value={90} color="#ff6700" />
             </div>
         </div>
     );
 };
 
-export default DoughnutChart;
+export default PieChart;
