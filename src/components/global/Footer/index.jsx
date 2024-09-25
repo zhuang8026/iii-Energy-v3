@@ -10,7 +10,7 @@ const Footer = () => {
     return (
         <div className={cx('footer')}>
             <div className={cx('left')}>
-                <p>版權所有 ©2024財團法人資訊工業策進會，未經允許，請勿轉載</p>
+                <p>版權所有 ©2025財團法人資訊工業策進會，未經允許，請勿轉載</p>
                 <p>聯絡信箱：vickyli@iii.org.tw；聯繫電話：(02)66073757</p>
             </div>
             <div className={cx('right')}>

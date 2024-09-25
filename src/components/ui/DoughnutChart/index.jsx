@@ -72,6 +72,7 @@ const DoughnutChart = ({ type = '', value = 100.0, total = 200.0, compareValue =
                             name: 'empty',
                             itemStyle: {
                                 color: '#EBEEFA',
+                                borderRadius: 20,
                                 borderWidth: 0
                             }
                         }
@@ -163,7 +164,7 @@ const DoughnutChart = ({ type = '', value = 100.0, total = 200.0, compareValue =
             <div className={cx('chartDesc')}>
                 <div className={cx('chartNumber')}>
                     <span>{value}</span>
-                    {t("kwh")}
+                    {t('kwh')}
                 </div>
                 {compareValue > 0 ? (
                     <div className={cx('result')}>{t('home.comparison_more', { value: compareValue })}</div>

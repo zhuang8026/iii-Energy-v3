@@ -55,5 +55,9 @@
     .progress {
         width: calc(100% - 200px);
         height: 100%;
+        max-height: 200px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding-right: 10px;
     }
 }

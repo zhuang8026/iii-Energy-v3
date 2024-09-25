@@ -128,6 +128,10 @@ const PieChart = ({ type = '', value = 100.0, total = 200.0, compareValue = 0 })
             <div className={cx('progress')}>
                 <BorderLinearProgress name={'電視'} value={20} />
                 <BorderLinearProgress name={'冰箱'} value={90} color="#ff6700" />
+                <BorderLinearProgress name={'冰箱'} value={90} color="#ff6700" />
+                <BorderLinearProgress name={'冰箱'} value={90} color="#ff6700" />
+                <BorderLinearProgress name={'冰箱'} value={90} color="#ff6700" />
+                <BorderLinearProgress name={'冰箱'} value={90} color="#ff6700" />
             </div>
         </div>
     );
