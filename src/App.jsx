@@ -1,5 +1,5 @@
 import React, { useState, Suspense, useEffect, useContext, useRef } from 'react';
-import { BrowserRouter, Routes, Route, useLocation, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useNavigate, useLocation, Navigate } from 'react-router-dom';
 
 // mui icon
 import ElectricalServicesTwoToneIcon from '@mui/icons-material/ElectricalServicesTwoTone';
@@ -9,6 +9,8 @@ import VpnKeyTwoToneIcon from '@mui/icons-material/VpnKeyTwoTone';
 
 // 翻譯
 import { useTranslation } from 'react-i18next'; // 翻譯
+
+import { getCookie, setCookie } from '@/utils/cookie';
 
 // config
 import routes from '@/router/routes';
@@ -31,6 +33,9 @@ import classNames from 'classnames/bind';
 const cx = classNames.bind(classes);
 
 function App() {
+    const navigate = useNavigate(); // Properly define navigate here
+    const location = useLocation(); // This gives the current location
+
     const { t, i18n } = useTranslation(); // t: 用來翻譯
     // i18n: 翻譯管理，可轉換語系
 
@@ -73,9 +78,11 @@ function App() {
 
     // menu (layout & url)
     const getLayouts = () => {
-        console.log('畫面區塊異動中', auth, pathname);
+        console.log(`畫面區塊異動中, auth:${auth}, path-name:${pathname}`);
         if (auth) {
             const layoutPath = location.pathname.split('/')[1].toUpperCase();
+
+            // master router (not included: globalRoutes)
             const matchedRoute = routes.find(route => route.path.split('/')[1].toUpperCase() === layoutPath);
 
             if (matchedRoute) {
@@ -90,13 +97,23 @@ function App() {
     };
 
     useEffect(() => {
+        let token = getCookie('token');
+        if (!token) {
+            navigate({
+                ...location,
+                pathname: `/login`
+            });
+        }
+    }, [pathname]);
+
+    useEffect(() => {
         getLayouts();
-    }, [auth, pathname]); // pathname 变化时也调用 getLayouts
+    }, [pathname]); // pathname 变化时也调用 getLayouts
 
     useEffect(() => {
         // 查找当前路径的路由
         const currentRoute = routes.find(route => route.path === pathname) || {};
-        console.log(currentRoute);
+        // console.log(currentRoute);
         // 如果当前路径的路由有 `title` 属性，设置为页面标题
         if (currentRoute.title) {
             document.title = t(`menu.${currentRoute.title}`);

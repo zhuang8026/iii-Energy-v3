@@ -13,7 +13,7 @@ const MonthCard = ({ data }) => {
     const { t } = useTranslation();
 
     return (
-        <div className={cx('month-card', 'card')}>
+        <div className={cx('month-card')}>
             2024 {t('energyReport.year')}
             <div className={cx('report')}>
                 <div className={cx('report-item-number')}>

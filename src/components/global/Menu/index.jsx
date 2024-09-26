@@ -77,7 +77,7 @@ const Menu = ({ menuList }) => {
                         <div className={cx('avatar')}></div>
                     </div>
                     <div className={cx('user')}>
-                        <div className={cx('name')}>William.Chuang</div>
+                        <div className={cx('name')}  onClick={() => navigate('/login')}>William.Chuang</div>
                         {/* <div className={cx('logout')} onClick={() => navigate('/login')}>
                             <span>Logout</span>
                             <ExitToAppIcon />

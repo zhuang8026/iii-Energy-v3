@@ -1,8 +1,11 @@
 import React, { useState, Suspense, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 
-import { FullWindowAnimateProvider, FullPopWindow, useFullWindowAnimate } from '@/components/global/FullWindow';
+// components
 import Loading from '@/components/ui/Loading';
+
+// utils
+import { getCookie, setCookie } from '@/utils/cookie';
 
 // css
 import classes from './style.module.scss';
@@ -12,20 +15,19 @@ const cx = classNames.bind(classes);
 const Login = () => {
     const navigate = useNavigate(); // Properly define navigate here
     const location = useLocation(); // This gives the current location
-    const { openAnimate, closeAnimate } = useFullWindowAnimate();
+    const { openLoading, closeLoading } = Loading();
 
-    const openPopup = () => {
-        openAnimate({ component: <Loading /> });
-    };
     const login = () => {
         console.log('login');
-        openPopup();
+        openLoading('login...');
+
+        setCookie('token', '1234567890');
         setTimeout(() => {
             navigate({
                 ...location,
                 pathname: `/main`
             });
-            closeAnimate();
+            closeLoading();
         }, 3000);
     };
     return (

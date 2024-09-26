@@ -19,6 +19,7 @@
     "home": {
         "power_usage_tracking": "Power usage tracking",
         "set_goals": "Set goals",
+        "recent_electricity": "Recent electricity usage trends",
         "public_electricity_desc": "Does not include community public electricity",
         "electricity_consumption_accumulation": "Electricity consumption accumulation",
         "month_electricity": "Cumulative electricity consumption this month",

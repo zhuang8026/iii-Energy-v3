@@ -16,6 +16,7 @@
     "home": {
         "power_usage_tracking": "用電追蹤",
         "set_goals": "設定目標",
+        "recent_electricity": "近期用電趨勢",
         "public_electricity_desc": "不含社區公共用電",
         "electricity_consumption_accumulation": "用電累積",
         "month_electricity": "本月累積",

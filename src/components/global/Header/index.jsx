@@ -77,16 +77,20 @@ const Header = () => {
     }, []);
 
     useEffect(() => {
-        const pathObj = routes.find(item => item.path === pathname);
-        setHead({
-            main: `menu.${pathObj.main}`,
-            child: `menu.${pathObj.title}`
-        });
-
         // 設定語言
         let langIconName = getCookie(COOKIE_NAME.LANG) || 'en-US';
         setLanguageIcon(LANG_ICON[langIconName]);
+
+        console.log('pathname', pathname);
+        if (!pathname.includes('login')) {
+            const pathObj = routes.find(item => item.path === pathname);
+            setHead({
+                main: `menu.${pathObj.main}`,
+                child: `menu.${pathObj.title}`
+            });
+        }
     }, [pathname]);
+
     return (
         <div className={cx('header', isScrolled && 'scrolled')}>
             <div className={cx('title')}>

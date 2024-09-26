@@ -28,9 +28,6 @@ const cx = classNames.bind(classes);
 const EnergyReport = () => {
     const { t, i18n } = useTranslation();
 
-    // 1+2 function
-    
-
     return (
         <div className={cx('report')}>
             <div className={cx('year_control')}>
