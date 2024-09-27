@@ -41,8 +41,8 @@ const PieChart = ({ type = '', value = 100.0, total = 200.0, compareValue = 0 })
         };
 
         const option = {
-            animation: false, // 關閉整體動畫
-            selectedMode: false,
+            // animation: false, // 關閉整體動畫
+            // selectedMode: false,
             series: [
                 // 外圈 - 未過100%的部分
                 {

@@ -78,6 +78,7 @@ const Menu = ({ menuList }) => {
                     </div>
                     <div className={cx('user')}>
                         <div className={cx('name')}  onClick={() => navigate('/login')}>William.Chuang</div>
+                        <div className={cx('account')} >William_Chuang@iii.org.tw</div>
                         {/* <div className={cx('logout')} onClick={() => navigate('/login')}>
                             <span>Logout</span>
                             <ExitToAppIcon />

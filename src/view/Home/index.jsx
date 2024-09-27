@@ -7,6 +7,7 @@ import * as echarts from 'echarts';
 import { useTranslation } from 'react-i18next';
 
 // mui
+import WarningTwoToneIcon from '@mui/icons-material/WarningTwoTone';
 import BorderColorTwoToneIcon from '@mui/icons-material/BorderColorTwoTone';
 import ErrorOutlineTwoToneIcon from '@mui/icons-material/ErrorOutlineTwoTone';
 
@@ -18,6 +19,10 @@ import IconTV from '@/assets/images/icon-tv.svg';
 
 // components
 import DoughnutChart from '@/components/ui/DoughnutChart';
+import LineChart from '@/components/ui/LineChart';
+import LineChartWindows from '@/components/ui/LineChartWindows';
+import PopUp from '@/components/global/PopUp';
+import EditTrack from '@/components/ui/EditTrack';
 
 // css
 import classes from './style.module.scss';
@@ -26,92 +31,15 @@ const cx = classNames.bind(classes);
 
 const Home = () => {
     const { t, i18n } = useTranslation();
-    const chartDOM = useRef();
-    // const { openLoading, closeLoading } = Loading();
+    const { openPopUp, closePopUp } = PopUp();
 
-    const initChart = () => {
-        const Health = '#20A2A0'; // 未超標顏色
-        const Warning = '#ff6700'; // 超標顏色
-        const Danger = '#ff0000'; // 超標顏色
-        let chartLine = echarts.init(chartDOM.current);
-        chartLine.clear();
-
-        const option = {
-            legend: {
-                data: ['2023', '2024'],
-                // orient: 'vertical', // 垂直排列
-                // right: 50, // 靠右側距離
-                bottom: 0, // 距離頂部的距離
-                icon: 'rect',
-                itemHeight: 5
-            },
-            // 折線圖的絕對位置
-            grid: {
-                top: '20%',
-                left: '1%',
-                right: '4%',
-                bottom: '1%',
-                containLabel: true
-            },
-            xAxis: {
-                type: 'category',
-                nameGap: 40,
-                boundaryGap: false,
-                splitLine: {
-                    show: true // 每條X軸的線
-                },
-                axisTick: {
-                    show: true // 刻度線
-                }
-            },
-            yAxis: {
-                type: 'value',
-                // name: '度/kwh',
-                axisLabel: {
-                    formatter: '{value}'
-                },
-                splitLine: {
-                    // 網格線
-                    lineStyle: {
-                        type: 'solid', // 網格線類型 dotted：虛線，solid:實線
-                        width: 0.5,
-                        color: '#EBEBEB'
-                    }
-                },
-                axisLine: {
-                    show: true,
-                    lineStyle: {
-                        color: '#B5B5B5',
-                        width: 1
-                    }
-                }
-            },
-            series: [
-                {
-                    type: 'line',
-                    itemStyle: {
-                        color: '#2FCBBB'
-                    },
-                    data: [1, 2, 3],
-                    type: 'line'
-                },
-                {
-                    type: 'line',
-                    itemStyle: {
-                        color: '#ff7c32'
-                    },
-                    data: [4, 7, 8],
-                    type: 'line'
-                }
-            ]
-        };
-
-        chartLine.setOption(option);
+    const openEditPopUp = () => {
+        openPopUp({ component: <EditTrack closePopUp={closePopUp} /> });
     };
 
-    useEffect(() => {
-        initChart();
-    }, []);
+    const openLineChartPopUp = () => {
+        openPopUp({ component: <LineChartWindows closePopUp={closePopUp} /> });
+    };
 
     return (
         <div className={cx('home')}>
@@ -126,17 +54,15 @@ const Home = () => {
                         </div>
                     </div>
                     <span>* {t('home.public_electricity_desc')} *</span>
-                    <button type="button">
+                    <button type="button" onClick={() => openEditPopUp()}>
                         <BorderColorTwoToneIcon />
                     </button>
                 </div>
-                <div className={cx('target-box')}>
+                <div className={cx('target-box')} onClick={() => openLineChartPopUp()}>
                     {t('home.recent_electricity')}
-
-                    <div id={cx('lineChart')} ref={chartDOM} />
-
+                    <LineChart />
                     <button type="button">
-                        <ErrorOutlineTwoToneIcon />
+                        <WarningTwoToneIcon />
                     </button>
                 </div>
             </div>

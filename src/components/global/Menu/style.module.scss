@@ -6,7 +6,7 @@
 .nav-menu {
     width: 260px;
     height: 100%;
-    z-index: 1200;
+    z-index: 2;
     position: fixed;
     top: 0px;
     left: 0px;
@@ -140,6 +140,9 @@
                     display: -webkit-box;
                     -webkit-line-clamp: 1;
                     -webkit-box-orient: vertical;
+                }
+                .account {
+                    font-size: $fs-10;
                 }
                 .logout {
                     cursor: pointer;

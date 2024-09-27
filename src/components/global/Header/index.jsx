@@ -95,7 +95,7 @@ const Header = () => {
         <div className={cx('header', isScrolled && 'scrolled')}>
             <div className={cx('title')}>
                 <p>
-                    <HomeTwoToneIcon /> / {t(head.main)} / {t(head.child)}
+                    <HomeTwoToneIcon fontSize="small" /> / {t(head.main)} / {t(head.child)}
                 </p>
                 {t(head.child)}
             </div>
