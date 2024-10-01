@@ -3,10 +3,10 @@ import React, { lazy } from 'react';
 
 import Home from '@/view/Home';
 import EnergyReport from '@/view/EnergyReport';
+import EnergyMangement from '@/view/EnergyMangement';
+import BindDevice from '@/view/BindDevice';
 import PageA from '@/view/PageA';
 import PageB from '@/view/PageB';
-import Login from '@/view/User/Login';
-import Account from '@/view/User/Account';
 
 const routes = [
     {
@@ -26,6 +26,24 @@ const routes = [
         exact: true,
         authRequired: false,
         layouts: ['menu', 'header']
+    },
+    {
+        main: 'overall',
+        path: '/main/energy_mangement',
+        title: 'energy_mangement',
+        component: EnergyMangement,
+        exact: true,
+        authRequired: false,
+        layouts: ['menu', 'footer', 'header']
+    },
+    {
+        main: 'member_management',
+        path: '/member/bind_device',
+        title: 'bind_device',
+        component: BindDevice,
+        exact: true,
+        authRequired: false,
+        layouts: ['menu', 'footer', 'header']
     },
     {
         main: 'member_management',

@@ -54,12 +54,22 @@ function App() {
                     name: 'menu.energy_report',
                     path: '/main/energy_report',
                     icon: <LeaderboardTwoToneIcon />
+                },
+                {
+                    name: 'menu.energy_mangement',
+                    path: '/main/energy_mangement',
+                    icon: <LeaderboardTwoToneIcon />
                 }
             ]
         },
         {
             main: 'menu.member_management',
             children: [
+                {
+                    name: 'menu.bind_device',
+                    path: '/member/bind_device',
+                    icon: <BorderColorTwoToneIcon />
+                },
                 {
                     name: 'menu.data_modification',
                     path: '/member/data_modification',

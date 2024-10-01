@@ -64,6 +64,8 @@ const LineChart = ({ chartData = [] }) => {
                 }
             }
         },
+        // animation: false, // 關閉整體動畫
+        // selectedMode: false,
         series: [
             {
                 type: 'line',
@@ -83,7 +85,7 @@ const LineChart = ({ chartData = [] }) => {
     });
 
     const initChart = () => {
-        let chartLine = echarts.init(chartDOM.current);
+        const chartLine = echarts.init(chartDOM.current);
         chartLine.clear();
         options && chartLine.setOption(options);
     };
@@ -99,6 +101,7 @@ const LineChart = ({ chartData = [] }) => {
         window.addEventListener('resize', handleResize);
 
         return () => {
+            // 當resize事件發生時會呼叫它chart.resize()
             window.removeEventListener('resize', handleResize);
             chartLine.dispose();
         };
@@ -107,6 +110,11 @@ const LineChart = ({ chartData = [] }) => {
     useEffect(() => {
         setTimeout(() => {
             initChart();
+        }, 100);
+    }, []);
+
+    useEffect(() => {
+        setTimeout(() => {
             resizeLineChart();
         }, 100);
     }, [chartData]);

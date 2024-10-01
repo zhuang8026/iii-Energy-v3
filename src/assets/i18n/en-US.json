@@ -11,6 +11,8 @@
         "overall": "Electricity usage overview",
         "daily_usage_tracking": "Daily Electricity Consumption Monitoring",
         "energy_report": "Household Energy Report",
+        "energy_mangement": "Manage electricity usage",
+        "bind_device": "Bind electrical appliances",
         "member_management": "Membership Management",
         "data_modification": "User Profile Update",
         "password_change": "Use Password Update",

@@ -8,6 +8,8 @@
         "overall": "用電總覽",
         "daily_usage_tracking": "日常用電追蹤",
         "energy_report": "家庭能源報告",
+        "energy_mangement": "管理用電",
+        "bind_device": "綁定電器",
         "member_management": "會員管理",
         "data_modification": "資料修改",
         "password_change": "密碼變更",

@@ -3,9 +3,16 @@
 .month-card {
     position: relative;
     background: $card_white;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 3px 6px;
     border-radius: $fs-12;
     padding: 18px;
+    transition: 0.1s ease-in;
     cursor: pointer;
+
+    &:hover {
+        box-shadow: rgba(0, 0, 0, 0.3) 0px 3px 6px;
+        transform: translateY(-5px);
+    }
 
     .report {
         width: 100%;
