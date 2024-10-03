@@ -80,7 +80,7 @@ function Day(props) {
 const WeekPicker = () => {
     const [hoveredDay, setHoveredDay] = useState(null);
     const [value, setValue] = useState(dayjs('2024-04-17'));
-    let lang = getCookie('WILLIAMS_LANG');
+    let lang = getCookie('WILLIAMS_LANG') || 'en-us';
 
     useEffect(() => {
         // 設定 dayjs 語系
@@ -92,6 +92,8 @@ const WeekPicker = () => {
             <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={lang}>
                 <DateCalendar
                     value={value}
+                    minDate={dayjs('2020-01-01')} // Replace the string with a dayjs object
+                    maxDate={dayjs('2024-12-31')} // Use dayjs for maxDate as well
                     onChange={newValue => setValue(newValue)}
                     showDaysOutsideCurrentMonth
                     displayWeekNumber
@@ -129,7 +131,7 @@ const WeekPicker = () => {
                         '.MuiYearCalendar-root': {
                             width: '100%',
                             height: '70vh',
-                            maxHeight: 'none',
+                            maxHeight: 'none'
                         },
                         '.MuiPickersYear-root': {
                             flexBasis: '25%',
