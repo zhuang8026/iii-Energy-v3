@@ -10,5 +10,15 @@ export default defineConfig({
         // alias: {
         //     '@': path.resolve(__dirname, 'src') // 將 '@' 映射到 'src' 目錄
         // }
+    },
+    css: {
+        preprocessorOptions: {
+            scss: {
+                additionalData: `
+                    @import "@/assets/scss/_variables";
+                    @import "@/assets/scss/_svg-icon";
+                `
+            }
+        }
     }
 });
